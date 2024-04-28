@@ -12,7 +12,7 @@ def read_data(dataset, data_path, idx, is_train=True):
 
                 train_data_dict = {
                     'x': train_data['x'],
-                    'y': (train_data['y'] + 1) // 2
+                    'y': train_data['y']
                 }
         return train_data_dict
 
@@ -25,7 +25,7 @@ def read_data(dataset, data_path, idx, is_train=True):
 
                 test_data_dict = {
                     'x': test_data['x'],
-                    'y': (test_data['y'] + 1) // 2
+                    'y': test_data['y']
                 }
         return test_data_dict
 

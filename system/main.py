@@ -17,6 +17,7 @@ from flcore.servers.serverchardc import FedCHAR_DC
 
 from flcore.trainmodel.models import *
 from flcore.trainmodel.model_for_uwb import *
+from flcore.trainmodel.model_for_imu import *
 from utils.config_utils import argparser
 
 
@@ -31,6 +32,8 @@ def run(args):
         args.model = HARCNN(in_channels=3, num_classes=args.num_classes, dim=3008).to(args.device)
     elif args.dataset == 'uwb':
         args.model = BinaryClassifier().to(args.device)
+    elif args.dataset == 'imu':
+        args.model = IMUClassifier().to(args.device)
     else:
         raise NotImplementedError
 
