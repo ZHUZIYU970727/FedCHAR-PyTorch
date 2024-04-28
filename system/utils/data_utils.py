@@ -8,18 +8,26 @@ def read_data(dataset, data_path, idx, is_train=True):
 
         train_file = train_data_dir + str(idx) + '.npz'
         with open(train_file, 'rb') as f:
-            train_data = np.load(f, allow_pickle=True)
+            with np.load(f, allow_pickle=True) as train_data:
 
-        return train_data
+                train_data_dict = {
+                    'x': train_data['x'],
+                    'y': (train_data['y'] + 1) // 2
+                }
+        return train_data_dict
 
     else:
         test_data_dir = os.path.join(data_path, 'test/')
 
         test_file = test_data_dir + str(idx) + '.npz'
         with open(test_file, 'rb') as f:
-            test_data = np.load(f, allow_pickle=True)
+            with np.load(f, allow_pickle=True) as test_data:
 
-        return test_data
+                test_data_dict = {
+                    'x': test_data['x'],
+                    'y': (test_data['y'] + 1) // 2
+                }
+        return test_data_dict
 
 
 def read_client_data(dataset, data_path, idx, is_train=True):

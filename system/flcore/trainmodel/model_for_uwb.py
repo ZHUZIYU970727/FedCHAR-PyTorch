@@ -9,7 +9,7 @@ class BinaryClassifier(nn.Module):
         for hidden_size in hidden_sizes:
             self.hidden_layers.append(nn.Linear(prev_size, hidden_size))
             prev_size = hidden_size
-        self.output = nn.Linear(prev_size, 1)
+        self.output = nn.Linear(prev_size, 2)
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
