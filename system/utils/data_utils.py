@@ -8,7 +8,7 @@ def read_data(dataset, data_path, idx, is_train=True):
 
         train_file = train_data_dir + str(idx) + '.npz'
         with open(train_file, 'rb') as f:
-            train_data = np.load(f, allow_pickle=True)['data'].tolist()
+            train_data = np.load(f, allow_pickle=True)
 
         return train_data
 
@@ -17,7 +17,7 @@ def read_data(dataset, data_path, idx, is_train=True):
 
         test_file = test_data_dir + str(idx) + '.npz'
         with open(test_file, 'rb') as f:
-            test_data = np.load(f, allow_pickle=True)['data'].tolist()
+            test_data = np.load(f, allow_pickle=True)
 
         return test_data
 
