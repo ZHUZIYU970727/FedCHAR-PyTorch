@@ -62,6 +62,7 @@ class Server(object):
                 self.malicious_ids = []
                 self.attack_ratio = 0.0
             else:
+                # randomly select some clients based on attack ratio, and sort the ids from low to high
                 self.malicious_ids = np.sort(np.random.choice(np.arange(self.num_clients), int(self.num_clients * self.attack_ratio), replace=False))
                 
 

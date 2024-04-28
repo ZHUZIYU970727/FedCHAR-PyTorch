@@ -26,10 +26,17 @@ class Client(object):
         self.data_path = args.data_path
         # check BatchNorm
         self.has_BatchNorm = False
-        for layer in self.model.children():
-            if isinstance(layer, nn.BatchNorm2d):
-                self.has_BatchNorm = True
-                break
+
+        if args.dataset == 'wisdm':
+            for layer in self.model.children():
+                if isinstance(layer, nn.BatchNorm2d):
+                    self.has_BatchNorm = True
+                    break
+        elif args.dataset == 'uwb':
+            for layer in self.model.children():
+                if isinstance(layer, nn.LayerNorm):
+                    self.has_LayerNorm = True
+                    break
 
         self.loss = nn.CrossEntropyLoss()
         self.optimizer = torch.optim.SGD(self.model.parameters(), lr=self.learning_rate) # momentum=0.9, weight_decay=1e-4
